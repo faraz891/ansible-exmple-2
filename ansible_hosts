@@ -1,0 +1,13 @@
+# Dev.de
+# Mit Ansible verwaltete Hosts
+#dev-ansible-01 ansible_host=10.12.100.53
+#dev-app-01 ansible_host=10.12.100.23
+#dev-reza-01 ansible_host=10.12.100.8
+
+[DEV]
+#dev-app-01
+dev-reza-01 ansible_host=10.12.100.8
+#dev-app-01  ansible_host=10.12.100.23
+
+[AnsibleHost]
+#dev-ansible-01

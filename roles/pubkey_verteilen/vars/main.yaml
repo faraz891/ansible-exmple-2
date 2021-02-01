@@ -1,0 +1,3 @@
+pubkey_path: "/home/ansible/.ssh"
+ansible_user: "ansible"
+ansible_ssh_pass: "ansible"

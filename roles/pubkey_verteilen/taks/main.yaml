@@ -1,0 +1,35 @@
+- name: ansible check directory 
+  stat:    
+   path: "{{ pubkey_path }}"
+  register: pub_key_dir
+
+
+- name: echo if directory already existed
+  debug:
+     msg: "Directory is already exist"
+  when: pub_key_dir.stat.exists and pub_key_dir.stat.isdir
+
+
+- name: create directory .ssh
+  file:
+   path: "{{ pubkey_path }}"
+   state: directory
+   mode: '0755'
+   group: "{{ ansible_user }}"
+   owner: "{{ ansible_user }}"
+
+- name: create authorized_keys file
+  file:
+   path: "{{ pubkey_path }}/authorized_keys"
+   state: touch
+   mode: '0644'
+   owner: "{{ ansible_user }}"
+   group: "{{ ansible_user }}" 
+
+
+- name: copy Ansible pub key to authorized_keys
+  copy:
+   src: /home/rsayyarzamani/.ssh/id_rsa.pub
+   dest: "{{ pubkey_path }}/authorized_keys"
+   owner: "{{ ansible_user }}"
+   mode: '0644' 
